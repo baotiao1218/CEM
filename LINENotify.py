@@ -18,9 +18,11 @@ LogPath_test = "logging_notify_test.log"
 if (TestMode == 0):
     token = token_prod
     LogPath = LogPath_prod
+    Database = 'CEM.db'
 elif (TestMode == 1):
     token = token_test
     LogPath = LogPath_test
+    Database = 'CEM_test.db'
 
 def Traceback(err):
     now = time.strftime('%H:%M:%S', time.localtime(time.time()))
@@ -37,7 +39,7 @@ try:
     
     messages_to_send = "\n母牛編號 | 上次發情日\n"
 
-    db_connect = sqlite3.connect('CEM.db')
+    db_connect = sqlite3.connect(Database)
     cursorObj = db_connect.cursor()
 
     #DB_Query = cursorObj.execute('''SELECT * FROM Data_EstrusInfo WHERE NextEstrusDate = date('now') and NotifyStatus = 'N' order by Id''').fetchall()
